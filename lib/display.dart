@@ -33,16 +33,24 @@ class _DisplayState extends State<Display> {
     );
   }
 
+  Future playmusic() async {
+    try {
+      await assetsAudioPlayer.open(
+          Playlist(audios: [
+            Audio.network(
+                "https://raw.githubusercontent.com/KyawMyo78/birthday_card/master/assets/audios/btss.mp3"),
+          ]),
+          loopMode: LoopMode.playlist);
+    } catch (t) {
+      //mp3 unreachable
+    }
+    assetsAudioPlayer.play();
+  }
+
   @override
   void initState() {
     super.initState();
-    assetsAudioPlayer.open(
-      Playlist(audios: [
-        Audio.file("assets/audios/bts.mp3"),
-      ]),
-      loopMode: LoopMode.playlist,
-    );
-    assetsAudioPlayer.play();
+    playmusic();
   }
 
   @override
