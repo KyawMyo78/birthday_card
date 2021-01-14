@@ -83,7 +83,7 @@ class _DisplayState extends State<Display> {
         decoration: BoxDecoration(
           image: DecorationImage(
             colorFilter: new ColorFilter.mode(
-                Colors.purpleAccent.withOpacity(0.4), BlendMode.dstATop),
+                Colors.purpleAccent.withOpacity(0.1), BlendMode.dstATop),
             image: AssetImage("$showImg"),
             fit: BoxFit.fill,
           ),
