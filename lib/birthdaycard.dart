@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:birthday_for_elle/display.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,23 @@ class BdCard extends StatefulWidget {
 }
 
 class _BdCardState extends State<BdCard> {
+  final assetsAudioPlayer = AssetsAudioPlayer();
   String displayText = "";
+
+  Future playmusic() async {
+    try {
+      await assetsAudioPlayer.open(
+          Playlist(audios: [
+            Audio.network(
+                "https://raw.githubusercontent.com/KyawMyo78/birthday_card/master/assets/audios/btss.mp3"),
+          ]),
+          loopMode: LoopMode.playlist);
+    } catch (t) {
+      //mp3 unreachable
+    }
+    assetsAudioPlayer.play();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,6 +56,7 @@ class _BdCardState extends State<BdCard> {
               color: Color(0xffcc74fc),
               child: Text("Click me!"),
               onPressed: () {
+                playmusic();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Display()),
